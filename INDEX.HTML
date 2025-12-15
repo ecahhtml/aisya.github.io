@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AISYA - Student Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables for Clean Palette */
+        :root {
+            --color-background: #F4F7FA; /* Soft light grey/off-white */
+            --color-surface: #FFFFFF; /* Pure white for cards */
+            --color-text: #1E293B; /* Deep slate grey for main text */
+            --color-text-secondary: #6B7280; /* Muted grey for secondary text */
+            --color-accent: #004D99; /* Deep Ocean Blue (UMT Theme) */
+            --color-accent-light: #0077B6; /* Lighter shade for hover */
+            --color-border: #E5E7EB; /* Light border grey */
+            --font-inter: 'Inter', sans-serif;
+            --grid-gap: 16px;
+        }
+
+        /* Base Styles */
+        body {
+            font-family: var(--font-inter);
+            background-color: var(--color-background);
+            color: var(--color-text);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-gap: var(--grid-gap);
+            grid-template-columns: repeat(6, 1fr); /* 6 columns for complex desktop layout */
+        }
+
+        /* Card Styles */
+        .card {
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 
+                        0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--color-accent);
+            display: flex;
+            align-items: center;
+        }
+
+        .card-content {
+            flex-grow: 1;
+            color: var(--color-text);
+        }
+
+        .card-content h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 0 4px 0;
+            line-height: 1.2;
+        }
+
+        .card-content .tagline {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--color-text-secondary);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+        }
+        
+        .card-content p {
+            font-size: 1rem;
+            margin: 0 0 8px 0;
+            color: var(--color-text-secondary);
+        }
+
+        .card-content strong {
+            color: var(--color-text);
+        }
+
+        .social-links a {
+            color: var(--color-accent);
+            text-decoration: none;
+            margin-right: 15px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .social-links a:hover {
+            color: var(--color-accent-light); 
+        }
+
+        /* Specific Card Grid Placement (Desktop - 6 columns) */
+        .card-profile { grid-column: span 4; grid-row: span 2; }
+        .card-location { grid-column: span 2; grid-row: span 1; }
+        .card-tech-stack { grid-column: span 2; grid-row: span 1; }
+        .card-case-study { grid-column: span 2; grid-row: span 1; }
+        .card-hobby { grid-column: span 2; grid-row: span 1; }
+        .card-playlist { grid-column: span 6; grid-row: span 1; }
+
+        /* Helper for Icon/Emoji */
+        .icon {
+            margin-right: 8px;
+        }
+
+        /* Lists in Cards */
+        .subject-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .subject-list li {
+            background-color: var(--color-background);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            white-space: nowrap; /* Prevents wrapping for short items */
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* --- Media Queries for Responsiveness (Mobile First) --- */
+
+        /* Default (Mobile) - Stacked Vertically */
+        @media (max-width: 767px) {
+            .container {
+                grid-template-columns: 1fr; /* Single column */
+                padding: 10px;
+            }
+            .card {
+                grid-column: span 1 !important;
+                grid-row: auto !important;
+            }
+            .card-content h1 {
+                font-size: 1.5rem;
+            }
+            .subject-list {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Tablet/Small Desktop Adjustment (e.g., 4 columns) */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .container {
+                grid-template-columns: repeat(4, 1fr); 
+            }
+            /* Adjusted layout for 4 columns */
+            .card-profile { grid-column: span 4; grid-row: span 2; }
+            .card-location { grid-column: span 2; grid-row: span 1; }
+            .card-tech-stack { grid-column: span 2; grid-row: span 1; }
+            .card-case-study { grid-column: span 2; grid-row: span 1; }
+            .card-hobby { grid-column: span 2; grid-row: span 1; }
+            .card-playlist { grid-column: span 4; grid-row: span 1; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <section class="card card-profile">
+            <div class="card-header"><span class="icon">👤</span> Student Profile</div>
+            <div class="card-content">
+                <h1>AISYA</h1>
+                <p class="tagline">Innovating food safety.</p>
+                
+                <p><strong>Program:</strong> Bachelor of Food Science</p>
+                <p><strong>Year:</strong> Year 1</p>
+                
+                <hr style="border: none; border-top: 1px solid var(--color-border); margin: 15px 0;">
+                
+                <div class="social-links">
+                    <a href="#" target="_blank">LinkedIn</a>
+                    <a href="#" target="_blank">GitHub</a>
+                    <a href="#" target="_blank">UMT Portal</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="card card-location">
+            <div class="card-header"><span class="icon">📍</span> Location</div>
+            <div class="card-content">
+                <p style="font-size: 1.2rem; margin-bottom: 5px;"><strong>UMT, Kuala Nerus</strong></p>
+                <p style="font-size: 0.9rem; color: var(--color-text-secondary);">
+                    Current time is 10:58 AM
+                </p>
+            </div>
+        </section>
+
+        <section class="card card-tech-stack">
+            <div class="card-header"><span class="icon">📚</span> Core Subjects & Skills</div>
+            <div class="card-content">
+                <ul class="subject-list">
+                    <li>Food Chemistry</li>
+                    <li>Microbiology</li>
+                    <li>Excel Proficiency</li>
+                    <li>Lab Analysis Techniques</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="card card-case-study">
+            <div class="card-header"><span class="icon">🍚</span> Case Study</div>
+            <div class="card-content">
+                <h3 style="margin: 0 0 8px 0;">Starch Gelatinization in Local Kuih</h3>
+                <p>Analyzing texture profiles of *Kuih Lapis* to determine the effect of heating rate on starch granule structure.</p>
+                <p style="font-size: 0.85rem; color: var(--color-accent); font-weight: 500;">
+                    <span class="icon" style="margin-right: 4px;">→</span> View Preliminary Data
+                </p>
+            </div>
+        </section>
+        
+        <section class="card card-hobby">
+            <div class="card-header"><span class="icon">🚶‍♀️</span> Relaxation</div>
+            <div class="card-content">
+                <p style="font-size: 1.1rem; margin-bottom: 5px;"><strong>Evening Walks</strong></p>
+                <p style="font-size: 0.9rem;">De-stressing at Pantai UMT.</p>
+            </div>
+        </section>
+
+        <section class="card card-playlist">
+            <div class="card-header"><span class="icon">🎶</span> Study Playlist</div>
+            <div class="card-content">
+                <p style="font-size: 1rem; margin: 0;">Focus Music Mix (Ambient/Classical)</p>
+                <div style="background-color: var(--color-border); height: 50px; border-radius: 6px; margin-top: 10px; display: flex; align-items: center; justify-content: center; color: var(--color-text-secondary);">
+                    [Music Player Placeholder - Currently playing 'Clair de Lune' by Debussy]
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>
